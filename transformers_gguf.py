@@ -35,6 +35,7 @@ model_path = "./"  # 如果模型文件在当前目录下
 gguf_file = "qwen2.5-7b-instruct-q4_k_m.gguf"
 
 # 从本地加载模型
+# transformers对gguf支持不全，很多模型无法加载
 tokenizer = AutoTokenizer.from_pretrained(model_path, gguf_file=gguf_file, clean_up_tokenization_spaces=True)
 model = AutoModelForCausalLM.from_pretrained(model_path, gguf_file=gguf_file)
 
