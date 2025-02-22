@@ -1,3 +1,4 @@
+# ref：https://blog.csdn.net/weixin_42426841/article/details/142745525
 import psutil
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from pynvml import nvmlInit, nvmlDeviceGetHandleByIndex, nvmlDeviceGetMemoryInfo, nvmlShutdown
