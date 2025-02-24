@@ -23,7 +23,8 @@ def stop_ollama_model(model_name):
     except subprocess.CalledProcessError as e:
         print(f"执行命令时出错：{e.stderr}")
 
-def model_inference(model_name):
+# 直接输出全部答案
+def model_inference_direct(model_name):
     llm = ChatOllama(
         model = model_name,
         temperature = 0.8,
@@ -44,10 +45,33 @@ def model_inference(model_name):
     # model = OllamaLLM(model='deepseekv2-lite-chat')
     # print(model.invoke("Come up with 10 names for a song about parrots"))
 
+# 流式输出，便于分析生成速度
+def model_inference_stream(model_name):
+    llm = ChatOllama(
+        model = model_name,
+        temperature = 0.8,
+        num_predict = 256,
+    )
+
+    
+    template = """
+    Question: {question}
+    Answer: 请一步一步思考
+    """
+
+    chunks = []
+    prompt = ChatPromptTemplate.from_template(template)
+    chain = prompt | llm
+    for chunk in chain.stream({"question": "What is LangChain?"}):
+        chunks.append(chunk)
+        print(chunk.content, end="", flush=True)
+
+
 if __name__ == "__main__":
     model_name = "deepseekv2-lite-chat"
     # 运行模型
     run_ollama_model(model_name)
-    model_inference(model_name)
+    # model_inference_direct(model_name)
+    model_inference_stream(model_name)
     # 停止模型
     stop_ollama_model(model_name)
