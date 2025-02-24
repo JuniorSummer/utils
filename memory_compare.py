@@ -98,6 +98,7 @@ if __name__ == '__main__':
 
     print(f"加载模型后CPU内存变化量：{cpu_change_load:+.2f} MB")
     print(f"加载模型后GPU显存变化量：{gpu_change_load:+.2f} MB")
+    print(f"\n")
 
     # 生成文本前的内存状态
     cpu_before_inference = get_cpu_memory()
