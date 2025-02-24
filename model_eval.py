@@ -37,12 +37,14 @@ def calculate_token_stats(prompt):
         "total_time": total_time
     }
 
-# 示例使用
-prompt = "Please generate a response."
-stats = calculate_token_stats(prompt)
-print(f"prompt eval count:    {stats['prompt_tokens']} token(s)") # 输入提示Token数
-print(f"prompt eval duration: {stats['first_token_time']:.3f}s") # 首token响应时间
-print(f"prompt eval rate:     {stats['prompt_tokens']/stats['first_token_time']:.3f} tokens/s") # 模型响应速度
-print(f"eval count:           {stats['output_tokens']} token(s)") # 输出内容token数
-print(f"eval duration:        {stats['total_time']:.3f}s") # 总生成耗时
-print(f"eval rate:            {stats['output_tokens']/stats['total_time']:.3f} tokens/s") # 输出速度
+
+if __name__ == '__main__':
+    # 示例使用
+    prompt = "Please generate a response."
+    stats = calculate_token_stats(prompt)
+    print(f"prompt eval count:    {stats['prompt_tokens']} token(s)") # 输入提示Token数
+    print(f"prompt eval duration: {stats['first_token_time']:.3f}s") # 首token响应时间
+    print(f"prompt eval rate:     {stats['prompt_tokens']/stats['first_token_time']:.3f} tokens/s") # 模型响应速度
+    print(f"eval count:           {stats['output_tokens']} token(s)") # 输出内容token数
+    print(f"eval duration:        {stats['total_time']:.3f}s") # 总生成耗时
+    print(f"eval rate:            {stats['output_tokens']/stats['total_time']:.3f} tokens/s") # 输出速度
