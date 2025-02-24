@@ -11,7 +11,8 @@ def mock_model(prompt):
 def calculate_token_stats(prompt):
     # 计算提示中的 token 数，首次运行会需要下载模型
     # 原理和huggingface的tokenizer一样，tiktoken更加高效
-    encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
+    # encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
+    encoding = tiktoken.get_encoding("cl100k_base")
     prompt_tokens = len(encoding.encode(prompt))
 
     # 记录开始时间
