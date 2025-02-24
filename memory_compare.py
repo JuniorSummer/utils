@@ -46,6 +46,8 @@ def model_inference(model_name):
     # model = OllamaLLM(model='deepseekv2-lite-chat')
     # print(model.invoke("Come up with 10 names for a song about parrots"))
 
+# 上面是模型运行部分，下面才是主要函数
+
 def get_gpu_memory_():
     """
     获取指定 GPU 的已用显存（单位：MB）
