@@ -10,4 +10,4 @@ pip cache purge
 # 查看conda下载的缓存
 conda clean --all --dry-run
 # 清空conda下载的缓存
-conda clean --tarballs
+conda clean --all
