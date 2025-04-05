@@ -1,4 +1,4 @@
-pip install xxx -i https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+pip install xxx -i https://pypi.tuna.tsinghua.edu.cn/simple
 conda install -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 pytorch-cuda=12.4 -c pytorch -c nvidia
 
 # 保存环境
