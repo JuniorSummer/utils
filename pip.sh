@@ -1,3 +1,7 @@
+pip install xxx -i https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+conda install -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 pytorch-cuda=12.4 -c pytorch -c nvidia
+
+# 保存环境
 pip freeze > pip_requirements.txt
 # 可以直接创建conda环境：conda create --name <env> --file <this file>
 conda list -e > conda_requirements.txt
