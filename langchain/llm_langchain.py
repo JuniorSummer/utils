@@ -58,6 +58,40 @@ embeddings = HuggingFaceEmbeddings(model_name=embeddings_path)
 vectorStoreDB = FAISS.from_documents(docs, embedding=embeddings)
 print(vectorStoreDB)
 
+ retriever = vectorStoreDB.as_retriever(
+    search_type="similarity_score_threshold", search_kwargs={"score_threshold": 0.3}
+)
+
+# 创建提示模板
+template = """
+只根据以下文档回答问题：
+{context}
+
+问题：{question}
+"""
+
+prompt = ChatPromptTemplate.from_template(template)
+
+# 创建请求链
+outputParser = StrOutputParser()
+setup_and_retrieval = RunnableParallel(
+    {
+        "context": retriever,
+        "question": RunnablePassthrough()
+    }
+)
+
+# 测试请求链
+result = setup_and_retrieval.invoke("ChatGPT在法律层面有哪些影响？")
+print(result)
+
+# 完整请求链
+chain = setup_and_retrieval | prompt | model | outputParser
+answer = chain.invoke("ChatGPT在法律层面有哪些影响？")
+print(answer)
+
+'''
+# 简单点加载问答链的方式
 # 加载问答链
 qa_chain = load_qa_chain(llm, chain_type="stuff")
 # 定义问题
@@ -70,7 +104,6 @@ answer = qa_chain.run(input_documents=similar_docs, question=question)
 print(f"问题: {question}")
 print(f"答案: {answer}")   
 
-'''
 # 记忆更新
 answer = chain.run(input_documents=documents, question=question, memory=memory)
 memory.update({"last_question": question, "last_answer": answer})
