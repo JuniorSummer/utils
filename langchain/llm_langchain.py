@@ -5,6 +5,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings.huggingface import HuggingFaceEmbeddings
+from langchain.chains.question_answering import load_qa_chain
 
 # 检查是否有可用的GPU/NPU
 if torch.cuda.is_available():
