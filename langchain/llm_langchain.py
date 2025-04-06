@@ -69,3 +69,12 @@ answer = qa_chain.run(input_documents=similar_docs, question=question)
 
 print(f"问题: {question}")
 print(f"答案: {answer}")   
+
+'''
+# 记忆更新
+answer = chain.run(input_documents=documents, question=question, memory=memory)
+memory.update({"last_question": question, "last_answer": answer})
+
+# 返回检索来源
+使用load_qa_with_sources_chain函数
+'''
