@@ -91,7 +91,7 @@ answer = chain.invoke("ChatGPT在法律层面有哪些影响？")
 print(answer)
 
 '''
-# 简单点加载问答链的方式
+# langchain官方进行文档问答
 # 加载问答链
 qa_chain = load_qa_chain(llm, chain_type="stuff")
 # 定义问题
