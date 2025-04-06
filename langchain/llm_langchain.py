@@ -56,3 +56,15 @@ embeddings_path = 'moka-ai/m3e-base'
 embeddings = HuggingFaceEmbeddings(model_name=embeddings_path)
 vectorStoreDB = FAISS.from_documents(docs, embedding=embeddings)
 print(vectorStoreDB)
+
+# 加载问答链
+qa_chain = load_qa_chain(llm, chain_type="stuff")
+# 定义问题
+question = "文档中关于某个关键内容的描述是什么？"
+# 从向量数据库中检索相关文档
+similar_docs = vectorStoreDB.similarity_search(question)
+# 使用问答链进行问答
+answer = qa_chain.run(input_documents=similar_docs, question=question)
+
+print(f"问题: {question}")
+print(f"答案: {answer}")   
