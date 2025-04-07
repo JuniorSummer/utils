@@ -5,6 +5,8 @@ conda install -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main pytorch
 pip freeze > pip_requirements.txt
 # 可以直接创建conda环境：conda create --name <env> --file <this file>
 conda list -e > conda_requirements.txt
+# conda删除环境
+conda remove --name ktransformers --all
 
 # 查看pip下载的缓存
 pip cache dir
