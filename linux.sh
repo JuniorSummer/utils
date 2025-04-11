@@ -5,3 +5,7 @@ netstat -tlnp | grep 1927
 du -sh . && df -h .
 du -sh
 df -hl
+
+# 删除容器和镜像
+docker rm -f CONTAINER ID
+docker rmi -f IMAGE ID
