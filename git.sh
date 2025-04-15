@@ -6,3 +6,5 @@ git config --list
 # 清除全局配置
 git config --global --unset user.name
 git config --global --unset user.email
+# 取消仓库关联
+git remote remove origin
